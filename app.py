@@ -53,7 +53,7 @@ if upload_image is not None:
         prediction = model.predict(image_array)
         probability = prediction[0][0]
         
-        label,clr = ("Real","Green") if probability > 0.5 else ("Fake","Red")
-        st.write(f'<p style="color: {clr}; font-size: 20px;">{probability*100:.2f}% chances of image being a {label} image</p>', unsafe_allow_html=True)
-        
+        label,clr,probability = ("Real","Green", probability*100) if probability > 0.5 else ("Fake","Red", (1-probability)*100)
+        st.write(f'<p style="color: {clr}; font-size: 20px;">{probability:.2f}% chances of image being a {label} image</p>', unsafe_allow_html=True)
+
     
